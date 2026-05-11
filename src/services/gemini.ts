@@ -1,7 +1,9 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
 // Standard initialization using process.env.GEMINI_API_KEY as per guidelines
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY as string });
+// Fallback to the user-provided key if the environment variable is not set
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyASLpTuDNGPO_k4_xMXYIvqfKd33nCKi3w";
+const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY as string });
 
 export const generateMovieExplanation = async (movieTitle: string, overview: string, language: string) => {
   try {
